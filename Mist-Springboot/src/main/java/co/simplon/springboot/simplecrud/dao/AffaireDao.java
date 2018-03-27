@@ -17,6 +17,7 @@ public class AffaireDao implements DAO<Affaire> {
 	ResultSet result = null;
 	String requete;
 	Statement statement;
+	
 	@Override
 	public Affaire findOne(long id) throws SQLException, ClassNotFoundException {
 		factory = new DaoFactory();
@@ -46,7 +47,9 @@ public class AffaireDao implements DAO<Affaire> {
 	public Affaire create(Affaire affaire) throws SQLException, ClassNotFoundException {
 		factory = new DaoFactory();
 		connection = factory.getConnection();
-		requete = "SELECT * FROM affaire";
+		requete = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, description) VALUES (" 
+		+ affaire.getAgentResponsable() + ", " + affaire.getTitre() + ", " + affaire.getDateOuverture() + ", " + affaire.getDateCloture()
+		+ ", " + affaire.getStatus() + ", " + affaire.getDescription() + ")";
 		statement = connection.createStatement();
 		// Exécution de la requête
 		result = statement.executeQuery(requete);
