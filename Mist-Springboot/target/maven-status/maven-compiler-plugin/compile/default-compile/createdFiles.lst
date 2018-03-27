@@ -1,4 +1,11 @@
-co\simplon\springboot\simplecrud\controller\UserController.class
+co\simplon\springboot\simplecrud\dao\AgentDaoImpl.class
 co\simplon\springboot\simplecrud\SimpleCrudApplication.class
-co\simplon\springboot\simplecrud\repository\UserRepository.class
-co\simplon\springboot\simplecrud\model\Utilisateur.class
+co\simplon\springboot\simplecrud\controller\AgentController.class
+co\simplon\springboot\simplecrud\service\AffaireService.class
+co\simplon\springboot\simplecrud\repository\AffaireRepository.class
+co\simplon\springboot\simplecrud\dao\DaoFactory.class
+co\simplon\springboot\simplecrud\repository\AgentRepository.class
+co\simplon\springboot\simplecrud\dao\AgentDao.class
+co\simplon\springboot\simplecrud\dao\DAO.class
+co\simplon\springboot\simplecrud\model\Affaire.class
+co\simplon\springboot\simplecrud\model\Agent.class

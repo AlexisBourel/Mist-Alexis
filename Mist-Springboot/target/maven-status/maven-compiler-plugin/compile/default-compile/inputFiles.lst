@@ -1,4 +1,11 @@
-C:\Users\Utilisateur\programmation\Java\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\model\Utilisateur.java
-C:\Users\Utilisateur\programmation\Java\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\repository\UserRepository.java
-C:\Users\Utilisateur\programmation\Java\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\SimpleCrudApplication.java
-C:\Users\Utilisateur\programmation\Java\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\controller\UserController.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\model\Agent.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\SimpleCrudApplication.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\dao\AgentDaoImpl.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\repository\AffaireRepository.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\dao\AgentDao.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\model\Affaire.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\service\AffaireService.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\dao\DAO.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\controller\AgentController.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\repository\AgentRepository.java
+C:\Data\workspace\projet fil rouge\mist_springboot\src\main\java\co\simplon\springboot\simplecrud\dao\DaoFactory.java
