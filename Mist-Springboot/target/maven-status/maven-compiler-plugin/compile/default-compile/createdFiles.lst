@@ -1,0 +1,4 @@
+co\simplon\springboot\simplecrud\controller\UserController.class
+co\simplon\springboot\simplecrud\SimpleCrudApplication.class
+co\simplon\springboot\simplecrud\repository\UserRepository.class
+co\simplon\springboot\simplecrud\model\Utilisateur.class
