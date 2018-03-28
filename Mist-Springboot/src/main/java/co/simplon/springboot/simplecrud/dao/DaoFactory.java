@@ -4,18 +4,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DaoFactory {
+public class DaoFactory{
 
 	private static final String URL = "jdbc:mysql://localhost:3306/mist?useSSL=false";
 	private static final String IDENTIFIANT = "root";
 	private static final String MOTDEPASSE = "admin";
+	private Connection connection;
 
-	public static DaoFactory getInstance() throws ClassNotFoundException {
+	public DaoFactory() throws SQLException, ClassNotFoundException {
+		// Chargement du driver
 		Class.forName("com.mysql.jdbc.Driver");
-		return new DaoFactory();
+		// creation de la connexion
+		connection = DriverManager.getConnection(URL, IDENTIFIANT, MOTDEPASSE);
+	}
+	
+	public Connection getConnection() {
+		return connection;
 	}
 
-	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(URL, IDENTIFIANT, MOTDEPASSE);
-	}
 }

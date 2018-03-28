@@ -1,22 +1,21 @@
 package co.simplon.springboot.simplecrud.dao;
 
-import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
-public abstract class DAO<T> {
+import co.simplon.springboot.simplecrud.model.Affaire;
 
-	protected Connection connect = null;
-
-	public DAO() {
-		
-	}
+public interface DAO<T> {
 
 	/**
 	 * Méthode de création
 	 * 
 	 * @param obj
 	 * @return boolean
+	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
 	 */
-	public abstract boolean create(T obj);
+	public abstract Affaire create(T obj) throws SQLException, ClassNotFoundException;
 
 	/**
 	 * Méthode pour effacer
@@ -24,7 +23,7 @@ public abstract class DAO<T> {
 	 * @param obj
 	 * @return boolean
 	 */
-	public abstract boolean delete(T obj);
+	public abstract Affaire delete(T obj);
 
 	/**
 	 * Méthode de mise à jour
@@ -32,14 +31,26 @@ public abstract class DAO<T> {
 	 * @param obj
 	 * @return boolean
 	 */
-	public abstract boolean update(T obj);
+	public abstract Affaire update(T obj);
 
 	/**
 	 * Méthode de recherche des informations
 	 * 
 	 * @param id
 	 * @return T
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public abstract T find(long id);
+	public abstract T findOne(long id) throws SQLException, ClassNotFoundException;
+	
+	/**
+	 * Méthode de recherche des informations
+	 * 
+	 * @param id
+	 * @return List<T>
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public abstract List<T> findAll() throws SQLException, ClassNotFoundException;
 
 }
