@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.springboot.simplecrud.dao.AffaireDao;
+import co.simplon.springboot.simplecrud.dao.AffaireDaoImpl;
 import co.simplon.springboot.simplecrud.model.Affaire;
 
 @RestController
 @RequestMapping("/api")
 public class AffaireController {
 	
-	AffaireDao dao = new AffaireDao();
+	AffaireDaoImpl dao = new AffaireDaoImpl();
 	
 	@CrossOrigin
 	@GetMapping("/affaire")
