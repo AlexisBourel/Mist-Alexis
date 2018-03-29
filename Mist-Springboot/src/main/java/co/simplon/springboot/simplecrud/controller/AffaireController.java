@@ -1,5 +1,6 @@
 package co.simplon.springboot.simplecrud.controller;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class AffaireController {
 	
 	@CrossOrigin
 	@GetMapping("/affaire")
-	List<Affaire> getAllAffaire(){
+	List<Affaire> getAllAffaire() throws ClassNotFoundException, SQLException{
 		return dao.findAll();
 	}
 	

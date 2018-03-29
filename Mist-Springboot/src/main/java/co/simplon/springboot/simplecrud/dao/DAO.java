@@ -1,5 +1,6 @@
 package co.simplon.springboot.simplecrud.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -51,6 +52,6 @@ public interface DAO<T> {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public abstract List<T> findAll() throws SQLException, ClassNotFoundException;
+	public abstract List<Affaire> findAll() throws SQLException, ClassNotFoundException;
 
 }
