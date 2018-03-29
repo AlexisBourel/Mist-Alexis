@@ -73,7 +73,7 @@ public class AffaireController {
 		Affaire resultAffaire = null;
 		
 		Long agentResponsable = affaire.getAgentResponsable();
-		if(agentResponsable == null) 
+		if(agentResponsable < 1) 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("L'id de l'Agent Responsable de l'affaire n'est pas renseigné");
 		
 		String titre = affaire.getTitre();
@@ -112,7 +112,7 @@ public class AffaireController {
 		Affaire result = null;
 		
 		Long agentResponsable = affaire.getAgentResponsable();
-		if(agentResponsable == null) 
+		if(agentResponsable < 1) 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("L'id de l'Agent Responsable de l'affaire n'est pas renseigné");
 		
 		String titre = affaire.getTitre();
