@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,7 +16,6 @@ public class AffaireDao implements DAO<Affaire> {
 
 	DaoFactory factory;
 	Connection connection;
-	Affaire affaire;
 	ResultSet result = null;
 	String requete;
 	PreparedStatement statement;
@@ -30,7 +30,7 @@ public class AffaireDao implements DAO<Affaire> {
 		result = statement.executeQuery(requete);
 		result.next();
 		// instanciation d'un objet Affaire avec le resultat de la requete
-		affaire = new Affaire();
+		Affaire affaire = new Affaire();
 		affaire.setId(result.getInt("id"));
 		affaire.setAgentResponsable(result.getInt("id_agent"));
 		affaire.setTitre(result.getString("titre"));
@@ -68,8 +68,32 @@ public class AffaireDao implements DAO<Affaire> {
 		return affaire;
 	}
 
-	public List<Affaire> findAll() {
-		return null;
+	public List<Affaire> findAll() throws ClassNotFoundException, SQLException {
+		List<Affaire> affaires = new ArrayList<>();
+		factory = new DaoFactory();
+		connection = factory.getConnection();
+		requete = "SELECT * FROM affaire";
+		statement = connection.prepareStatement(requete);
+		// Exécution de la requête
+		result = statement.executeQuery(requete);
+		while(result.next()) {
+		// instanciation d'un objet Affaire avec le resultat de la requete
+		Affaire affaire = new Affaire();
+		affaire.setId(result.getInt("id"));
+		affaire.setAgentResponsable(result.getInt("id_agent"));
+		affaire.setTitre(result.getString("titre"));
+		affaire.setDateOuverture(result.getString("date_ouverture"));
+		affaire.setDateCloture(result.getString("date_cloture"));
+		affaire.setStatus(result.getString("status"));
+		affaire.setDescription(result.getString("Description"));
+		affaires.add(affaire);
+		}
+		// Fermeture de la connexion
+		connection.close();
+		result.close();
+		statement.close();
+
+		return affaires;
 	}
 
 }

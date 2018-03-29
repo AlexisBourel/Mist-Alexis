@@ -27,7 +27,7 @@ public class AffaireController {
 	
 	@CrossOrigin
 	@GetMapping("/affaire")
-	List<Affaire> getAllAffaire(){
+	List<Affaire> getAllAffaire() throws ClassNotFoundException, SQLException{
 		return dao.findAll();
 	}
 	
