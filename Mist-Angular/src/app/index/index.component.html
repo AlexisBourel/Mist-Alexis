@@ -13,16 +13,17 @@
             <br>
             <button class="btn-block btn-lg btn-info waves-light" routerLink="gestion-droits">GESTIONS DES UTILISATEURS</button>
             <br>
+            <button class="btn-block btn-lg btn-info waves-light" routerLink="gestion">GESTION</button>
+            <br>
         </div>
 
         <div class="deconnexion">
-            <button class="btn-block btn-lg btn-danger waves-light" id="deconnexion" routerLink="acceuil">DECONNEXION</button>
+            <button class="btn-block btn-lg btn-danger waves-light" (click) = "onDeconnexion()" id="deconnexion" >DECONNEXION</button>
         </div>
         
     </div>
-
     <div class="col-10">
-
+        <p>{{authStatus}}</p>
         <router-outlet></router-outlet>
 
     </div>

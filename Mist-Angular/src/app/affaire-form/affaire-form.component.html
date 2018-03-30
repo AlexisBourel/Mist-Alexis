@@ -1,29 +1,48 @@
 <div class="row">
+  <div class="information col-md-5">
+    <div class="form-group">
+      <label for="titre">Nom de l'affaire</label>
+      <input type="text" class="form-control" id="titre" name="titre" [(ngModel)]="affaire.titre">
+    </div>
+    <div class="form-group">
+      <label for="id">Numéro de l'affaire</label>
+      <input type="number" class="form-control" id="id" name="id" [(ngModel)]="affaire.id">
+    </div>
 
-  <div class="col-6">
-
-    <input type="number" class="form-control" id="dateAffaire" placeholder="Date de l'affaire">
-    <br>
-    <input type="text" class="form-control" id="affairePolicier" placeholder="Policier en charge">
-    <br>
-    <input type="text" class="form-control" id="afairearmeImplique" placeholder="Armes impliquées">
-    <br>
-    <input type="text" class="form-control" id="vehiculeAffaire" placeholder="Vehicules impliqués">
-    <br>
+    <div class="form-group">
+      <div class="form-group">
+        <label for="idAgent">Id de l'Agent responsable de l'affaire</label>
+        <input type="number" class="form-control" id="id" name="idAgent" [(ngModel)]="affaire.idAgent">
+      </div>
+    </div>
   </div>
-  <div class="col-6">
-    <input type="text" class="form-control" id="autreAffaire" placeholder="Autre affaire">
-    <br>
-    <input type="text" class="form-control" id="pieceConvictionAffaire" placeholder="Pièces à conviction">
-    <br>
-    <input type="text" class="form-control" id="lieuAffaire" placeholder="Lieu de l'affaire">
-    <br>
+
+  <div class="affaire col-md-5 offset-md-1">
+    <div class="form-group">
+      <div class="form-group">
+        <label for="dateOuverture">Date d'ouverture de l'affaire</label>
+        <input type="dateOuverture" class="form-control" id="dateOuverture" name="dateOuverture" [(ngModel)]="affaire.dateOuverture">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status de l'affaire</label>
+      <input type="status" id="status" class="form-control" name="status" [(ngModel)]="affaire.status">
+    </div>
+
+    <div class="form-group">
+      <label for="dateCloture">Date de cloture (si Affaire résolue)</label>
+      <input type="dateCloture" id="dateCloture" class="form-control" name="dateCloture" [(ngModel)]="affaire.dateCloture">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Résumé de l'affaire</label>
+      <input type="description" id="description" class="form-control" name="description" [(ngModel)]="affaire.description">
+    </div>
+
   </div>
 
 </div>
 
-<div class="row">
-    
-  <button class="col-12 btn btn-info waves-light" type="submit" routerLink="/index/affichage-recherche">VALIDER</button>
+<button class="col-12 btn btn-info waves-light" type="submit" routerLink="/index/affichage-recherche">VALIDER</button>
 
-</div>

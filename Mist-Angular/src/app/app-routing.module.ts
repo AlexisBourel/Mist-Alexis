@@ -5,9 +5,8 @@ import { AccordeonRechercheComponent } from './accordeon-recherche/accordeon-rec
 import { AffichageRechercheComponent } from './affichage-recherche/affichage-recherche.component';
 import { NavComponent } from './nav/nav.component';
 import { IndexComponent } from './index/index.component';
-import { AcceuilComponent} from './acceuil/acceuil.component';
 import { ProfilComponent} from './profil/profil.component';
-import { GestionDroitsComponent } from './gestion-droits/gestion-droits.component';
+
 import { HotlistComponent} from './hotlist/hotlist.component';
 import { GestionAffaireComponent } from './gestion-affaire/gestion-affaire.component';
 import { SuspectFormComponent } from './suspect-form/suspect-form.component';
@@ -19,14 +18,24 @@ import {MatSelectModule} from '@angular/material/select';
 import { SuppressionAgentComponent } from './suppression-agent/suppression-agent.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuardService } from './auth-guard.service';
+import { AgentViewComponent } from './agent-view/agent-view.component';
+import { GestionViewComponent } from './gestion-view/gestion-view.component';
+import { AgentInfoComponent } from './agent-info/agent-info.component';
+import { ListeArmesComponent } from './liste-armes/liste-armes.component';
+import { AjoutAgentComponent } from './ajout-agent/ajout-agent.component';
+import { AjoutArmeComponent } from './ajout-arme/ajout-arme.component';
+import { AjoutAffaireComponent } from './ajout-affaire/ajout-affaire.component';
+import { ListeAffairesComponent } from './liste-affaires/liste-affaires.component';
 
 
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/acceuil', pathMatch: 'full' },
-  { path: 'acceuil', component: AcceuilComponent },
-  { path: 'index', component: IndexComponent, children: [
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: 'auth', component: AuthComponent },
+  { path: 'index', canActivate: [AuthGuardService], component: IndexComponent, children: [
 
     { path: '', redirectTo: 'hotlist', pathMatch: 'full'},
 
@@ -34,30 +43,43 @@ const routes: Routes = [
 
       { path: 'suspect-form', component: SuspectFormComponent },
       { path: 'arme-form', component: ArmeFormComponent },
+      { path: 'affaire-form', component: AffaireFormComponent},
       { path: 'vehicule-form', component: VehiculeFormComponent },
       { path: 'affaire-form', component: AffaireFormComponent },
     ]
-  
+
   },
 
     { path: 'affichage-recherche', component: AffichageRechercheComponent },
-  
+
     { path: 'profil', component: ProfilComponent },
 
-    { path: 'gestion-droits', component: GestionDroitsComponent },
+    { path: 'gestion', component: GestionViewComponent, children : [
 
+      {path: 'agents', component: AgentViewComponent},
+      {path: 'creationAgent', component: AjoutAgentComponent},
+      {path: 'ajoutArme', component: AjoutArmeComponent},
+      {path: 'listeArmes', component: ListeArmesComponent},
+      
+      {path: 'ajoutAffaire', component: AjoutAffaireComponent},
+      {path: 'listeAffaires', component: ListeAffairesComponent},
+      
+
+    ]},
+    
     { path: 'gestion-affaire', component: GestionAffaireComponent },
 
-    { path: 'hotlist', component: HotlistComponent },
+    { path: 'hotlist',canActivate: [AuthGuardService], component: HotlistComponent },
 
-    { path: 'suppression-agent', component: SuppressionAgentComponent }
+    { path: 'suppression-agent', component: SuppressionAgentComponent },
 
   ]
 
 },
 
-  { path: '**', component: AcceuilComponent },
-  
+  { path : '404', component: Page404Component},
+  { path: '**', redirectTo: '404' },
+
 ];
 
 @NgModule({

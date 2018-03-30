@@ -17,4 +17,10 @@ export class ProfilServiceService {
   public getAllProfil(): Observable<Profil[]> {
     return this.http.get<Profil[]>(this.profilUrl);
   }
+
+  public getProfil(libelle: string): Observable<Profil>{
+    //console.log("people.service::getPeople with id=" + id);
+    const url = `${this.profilUrl}/${libelle}`;
+    return this.http.get<Profil>(url);
+  }
 }
