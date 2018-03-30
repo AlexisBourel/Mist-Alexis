@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.springboot.simplecrud.model.Agent;
-import co.simplon.springboot.simplecrud.repository.AgentRepository;
 import co.simplon.springboot.simplecrud.service.AgentService;
 
 @RestController

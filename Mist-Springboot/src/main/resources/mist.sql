@@ -28,6 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `agent`
 --
 
+CREATE DATABASE IF NOT EXISTS mist;
+USE mist;
+
 DROP TABLE IF EXISTS `agent`;
 CREATE TABLE IF NOT EXISTS `agent` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -215,6 +218,29 @@ ALTER TABLE `utilisateur`
   ADD CONSTRAINT `FK2rpdpv15clle66lxyvro27vuh` FOREIGN KEY (`id_profil`) REFERENCES `profil` (`id`),
   ADD CONSTRAINT `fk_id_profil` FOREIGN KEY (`id_profil`) REFERENCES `profil` (`id`);
 COMMIT;
+
+DROP TABLE IF EXISTS `affaire`;
+CREATE TABLE IF NOT EXISTS affaire (
+    id smallint(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    id_agent smallint(5) NOT NULL,
+    titre varchar(45)NOT NULL,
+    date_ouverture varchar(25) NOT NULL,
+    status varchar(10) NOT NULL,
+    date_cloture varchar(25),
+    description text NOT NULL);
+
+
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+VALUES (1, "Plus dure sera la chute", "23 septembre 2002", "Ouverte", "Résumé1");
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+VALUES (2, "Apparences trompeuses", "30 septembre 2002", "Ouverte", "Résumé2");
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+VALUES (3, "Le Prix de la liberté", "7 octobre 2002", "Ouverte", "Résumé3");
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+VALUES (4, "Les Dessous de Miami", "14 octobre 2002", "Ouverte", "Résumé4");
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
