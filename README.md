@@ -4,25 +4,46 @@
 
 JRE installer sur l'ordinateur (v 1.8)
 MySql-server (v 5.7)
-
-** CONFIGURATION TECHNIQUE **
-
-Allez dans le dossier Ressources (Mist-Springboot/src/main/ressources) : 
-
-Dedans se trouve le .jar(package du programme Spring boot)
-Ainsi que le fichier mist.sql qui permet de construire la base de données et la remplir avec quelques entrée de test)
-Et le fichier application.properties (y indiquer les informations de connection a votre base de données)
+git (v2.14)
+un Environnement Developpement Intégré (Eclipse oxygen de préférence)
 
 
 **  Pour le fonctionnement  **
 
+Installer les prérequis si nécéssaire (Super tutoriels présent sur le net #Demande à Google)
+Lancer le gitBash à l'emplacement ou vous voulez importez le projet (click Droit "Git Bash Here")
+Lancer la commande "git clone https://github.com/AlexisBourel/Mist-Alexis.git"
+ 
+**  CONFIGURATION TECHNIQUE   **
+
+Allez dans le dossier Ressources (Mist-Springboot/src/main/ressources) : 
+
+Dedans se trouve fichier "mist.sql" qui permet de construire la base de données et la remplir avec quelques entrée de test)
+Ainsi que "application.properties" (y indiquer les informations de connection a votre base de données)
+
 Lancer le server sql, 
 initier la base de données (avec le fichier mist.sql voir ci dessus)
 
+
 Lancer l'application Springboot :
-via la commande shell "java -jar mist.jar" ! ATTENTION ! il faut bien se positionner dans le dossier Mist-Springboot
+  Deux possibilité :
+  
+    1. Créer une .jar : ! ATTENTION ! il faut bien se positionner dans le dossier Mist-Springboot
+      -lancer la commande "mvn package"
+      -lancer la commande shell "java -jar mist.jar"
+      
+    2. Importer le projet dans un EDI:
+        -Click Droit dans le "package explorer" 
+        -Séléctionner "import"
+        -"Existing Maven Project"
+        -Parcourir (bouton) dans les dossier afin de retrouver l'mplacement du dossier et y retrouver le pom.xml
+        -"Valider"
+      - Click Droit sur le dossier du projet
+      - "Run as"
+      - "Spring Boot App"
 
 Lancer l'application angular 
+
 via la commande "npm install" puis "ng serve -o" ! ATTENTION ! il faut bien se positionner dans le dossier Mist-Angular
 
 
