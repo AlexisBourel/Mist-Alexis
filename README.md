@@ -25,24 +25,33 @@ Lancer le server sql,
 initier la base de données (avec le fichier mist.sql voir ci dessus)
 
 
-Lancer l'application Springboot :
-  Deux possibilité :
+** LANCEMENT DE L'APPLICATION **
+
+L'application étant séparer en deux parties, il faut les démarrer toutes les deux pour 
+
+-- Lancer l'application Springboot --
+ 
+ Deux possibilité :
   
-    1. Créer une .jar : ! ATTENTION ! il faut bien se positionner dans le dossier Mist-Springboot
-      -lancer la commande "mvn package"
+    1. Créer un .jar : ! ATTENTION ! il faut bien se positionner dans le dossier Mist-Springboot
+      -lancer la commande suivante :
+      "mvn package -DskipTests
+       cd target
+       java -jar java-springboot-simplecrud-0.0.1-SNAPSHOT.jar"
+      Mise en route du programme : 
       -lancer la commande shell "java -jar mist.jar"
       
     2. Importer le projet dans un EDI:
         -Click Droit dans le "package explorer" 
         -Séléctionner "import"
         -"Existing Maven Project"
-        -Parcourir (bouton) dans les dossier afin de retrouver l'mplacement du dossier et y retrouver le pom.xml
+        -Parcourir (bouton) dans les dossier afin de retrouver l'emplacement du dossier et y retrouver le pom.xml
         -"Valider"
       - Click Droit sur le dossier du projet
       - "Run as"
       - "Spring Boot App"
 
-Lancer l'application angular 
+-- Lancer l'application angular --
 
 via la commande "npm install" puis "ng serve -o" ! ATTENTION ! il faut bien se positionner dans le dossier Mist-Angular
 
