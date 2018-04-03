@@ -29,9 +29,10 @@ un Environnement Developpement Intégré (Eclipse oxygen de préférence) peux �
 **  IMPORTATION DU PROJET**
 
 Installer les prérequis si nécéssaire
-Télécharger le dossier .zip du projet ou l'importer (voir ci dessous)
-- Lancer le gitBash à l'emplacement ou vous voulez importez le projet (click Droit "Git Bash Here")
-- Lancer la commande "git clone https://github.com/AlexisBourel/Mist-Alexis.git"
+Télécharger le dossier .zip du projet 
+ou l'importer (voir ci dessous)
+ - Lancer le gitBash à l'emplacement ou vous voulez importez le projet (click Droit "Git Bash Here")
+ - Lancer la commande "git clone https://github.com/AlexisBourel/Mist-Alexis.git"
  
  
  
