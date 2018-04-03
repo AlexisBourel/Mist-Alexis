@@ -99,9 +99,9 @@ Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est re
   les bouttons lister et ajouter affaire fonctionnent correctement tandis que les bouttons modifier et supprimer ne s'affiche pas sur le front, mais l'api fonctionne correctement (test sur POSTMAN via les URL suivant :
   
   
-  PUT http://localhost:8080/api/affaire/{{id}} pour la modification 
+    PUT http://localhost:8080/api/affaire/{{id}} 
+  pour la modification d'une affaire, 
   exemple PUT http://localhost:8080/api/affaire/1
-  pour modifier une affaire
   avec {
         "id": 1,
         "idAgent": 1,
@@ -112,7 +112,10 @@ Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est re
         "description": "Test résumé"
     } en format JSON
     
+    DELETE http://localhost:8080/api/affaire/{{id}} 
+   pour supprimer une affaire
+    
    {{id}} à remplacer par l'id d'une affaire éxistante dans la BDD
     
-    DELETE http://localhost:8080/api/affaire/{{id}} 
-    pour supprimer une affaire 
+   DELETE http://localhost:8080/api/affaire/{{id}} 
+   pour supprimer une affaire 
