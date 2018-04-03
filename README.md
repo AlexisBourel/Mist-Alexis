@@ -103,9 +103,10 @@ Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est re
   
   
     PUT http://localhost:8080/api/affaire/{{id}} 
-  pour la modification d'une affaire, 
-  exemple PUT http://localhost:8080/api/affaire/1
-  avec {
+     
+    exemple : 
+    PUT http://localhost:8080/api/affaire/1
+    avec {
         "id": 1,
         "idAgent": 1,
         "titre": "Entrée Test",
@@ -116,6 +117,5 @@ Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est re
     } en format JSON
     
     DELETE http://localhost:8080/api/affaire/{{id}} 
-   pour supprimer une affaire
-    
+      
    {{id}} à remplacer par l'id d'une affaire éxistante dans la BDD
