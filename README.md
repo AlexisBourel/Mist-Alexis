@@ -116,6 +116,3 @@ Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est re
    pour supprimer une affaire
     
    {{id}} à remplacer par l'id d'une affaire éxistante dans la BDD
-    
-   DELETE http://localhost:8080/api/affaire/{{id}} 
-   pour supprimer une affaire 
