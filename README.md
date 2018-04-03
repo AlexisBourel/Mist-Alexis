@@ -59,7 +59,7 @@ L'application étant séparer en deux parties, il faut les démarrer toutes les 
   
     1. Créer un .jar : 
     
-      Ouvrez un invite de commande dans le dossier "Mist-Springboot" et lancez les lignes suivantes :
+      Ouvrez une invite de commande dans le dossier "Mist-Springboot" et lancez les lignes suivantes :
       
       - mvn package -DskipTests
       - cd target
@@ -80,7 +80,7 @@ L'application étant séparer en deux parties, il faut les démarrer toutes les 
 
 -- Lancer l'application angular --
 
-Ouvrez un invite de commande dans le dossier "Mist-Angular" et lancez les lignes suivantes :
+    Ouvrez une invite de commande dans le dossier "Mist-Angular" et lancez les lignes suivantes :
       
       - npm install
       - ng serve -o
@@ -89,10 +89,12 @@ L'application est prête a fonctionner
 
 ** Credits **
 
-Merci @SMartin81 pour la partie Springboot
+Merci :
+@SMartin81 pour la partie Springboot
 https://github.com/simplonco/java-workshops-springboot-simplecrud
 @Hemoroide, @jnl06140 et @KyzenLJ pour la partie Angular
 https://github.com/Hemoroide/mist_angular
+@Google, pour tout le reste
 
 Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est relié a la table "affaire" 
   Il faut aller sur le boutton "GESTION" puis cliquer sur "affaires" en dessous du header
