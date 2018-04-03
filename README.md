@@ -3,8 +3,12 @@
 Afin de pourvoir installer et lancer l'application, il faut savoir utiliser les lignes de commandes
 https://windows.developpez.com/cours/ligne-commande/
 
+
+
+
 ** CONFIGURATION REQUISE **
-- JRE installer sur l'ordinateur (v 1.8), attention la v 1.*9 est déconseillée
+
+- JRE installer sur l'ordinateur (v 1.8), attention la v 1.9 est déconseillée
 https://www.java.com/fr/download/help/download_options.xml
 - MySql-server (v 5.7 +)
 https://dev.mysql.com/downloads/mysql/#downloads
@@ -20,12 +24,17 @@ lancer la ligne de commande "npm install @angular/cli" (nécéssite node.js)
 un Environnement Developpement Intégré (Eclipse oxygen de préférence) peux être nécéssaire pour l'import et le lancement de l'application (voir section lancement de l'application 2. importer dans un EDI)
 
 
+
+
 **  IMPORTATION DU PROJET**
 
 Installer les prérequis si nécéssaire
 Télécharger le dossier .zip du projet ou l'importer (voir ci dessous)
 - Lancer le gitBash à l'emplacement ou vous voulez importez le projet (click Droit "Git Bash Here")
 - Lancer la commande "git clone https://github.com/AlexisBourel/Mist-Alexis.git"
+ 
+ 
+ 
  
 **  CONFIGURATION TECHNIQUE   **
 
@@ -35,7 +44,9 @@ Dedans se trouve fichier "mist.sql" qui permet de construire la base de données
 Ainsi que "application.properties" (y indiquer les informations de connection a votre base de données)
 
 Lancer le server sql, 
-importer la base de données (avec le fichier mist.sql voir ci dessus)
+importer la base de données (avec le fichier mist.sql https://www.it-connect.fr/importer-un-fichier-sql-en-ligne-de-commande%EF%BB%BF/)
+
+
 
 
 ** LANCEMENT DE L'APPLICATION **
@@ -76,12 +87,18 @@ Ouvrez un invite de commande dans le dossier "Mist-Angular" et lancez les lignes
 
 L'application est prête a fonctionner 
 
+** Credits **
+
+Merci @SMartin81 pour la partie Springboot
+https://github.com/simplonco/java-workshops-springboot-simplecrud
+@Hemoroide, @jnl06140 et @KyzenLJ pour la partie Angular
+https://github.com/Hemoroide/mist_angular
+
 Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est relié a la table "affaire" 
   Il faut aller sur le boutton "GESTION" puis cliquer sur "affaires" en dessous du header
-  les bouttons lister et ajouter affaire fonctionnent correctement
-  - Bouttons modifier et supprimer ne s'affiche pas sur le front, mais l'api fonctionne correctement   
-  (A test sur POSTMAN via les URL suivant :
-  ici {{id}} à remplacer par l'id d'une affaire éxistante dans la BDD
+  les bouttons lister et ajouter affaire fonctionnent correctement tandis que les bouttons modifier et supprimer ne s'affiche pas sur le front, mais l'api fonctionne correctement (test sur POSTMAN via les URL suivant :
+  
+  
   PUT http://localhost:8080/api/affaire/{{id}} pour la modification 
   exemple PUT http://localhost:8080/api/affaire/1
   pour modifier une affaire
@@ -94,6 +111,8 @@ Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est re
         "dateCloture": null,
         "description": "Test résumé"
     } en format JSON
+    
+   {{id}} à remplacer par l'id d'une affaire éxistante dans la BDD
     
     DELETE http://localhost:8080/api/affaire/{{id}} 
     pour supprimer une affaire 
