@@ -97,32 +97,12 @@ https://github.com/Hemoroide/mist_angular
 @Google, pour tout le reste
 
 Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est relié a la table "affaire" 
-  Pour l'import de la base SQL, j'ai édité le fichier mist.sql venant du projet de groupe et y ai rajouté les lignes suivantes :
-    DROP TABLE IF EXISTS affaire;
-CREATE TABLE IF NOT EXISTS affaire (
-    id bigint(20)) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    id_agent bigint(20)) NOT NULL,
-    titre varchar(45)NOT NULL,
-    date_ouverture varchar(25) NOT NULL,
-    status varchar(10) NOT NULL,
-    date_cloture varchar(25),
-    description text NOT NULL);
-		
-ALTER TABLE affaire
-  ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);
-COMMIT;		
+  Pour l'import de la base SQL, j'ai édité le fichier mist.sql venant du projet de groupe et y ai rajouté les lignes 222 à 246 ( de 		'DROP TABLE IF EXISTS affaire;'
+  	à 
+  	'VALUES (4, "Les Dessous de Miami", "14 octobre 2002", "Ouverte", "Résumé4");':
+  
+  222 à 
 
-
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (1, "Plus dure sera la chute", "23 septembre 2002", "Ouverte", "Résumé1");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (2, "Apparences trompeuses", "30 septembre 2002", "Ouverte", "Résumé2");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (3, "Le Prix de la liberté", "7 octobre 2002", "Ouverte", "Résumé3");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (4, "Les Dessous de Miami", "14 octobre 2002", "Ouverte", "Résumé4");
   Il faut aller sur le boutton "GESTION" puis cliquer sur "affaires" en dessous du header
   les bouttons lister et ajouter affaire fonctionnent correctement tandis que les bouttons modifier et supprimer ne s'affiche pas sur le front, mais l'api fonctionne correctement (test sur POSTMAN via les URL suivant :
   
