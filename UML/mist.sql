@@ -48,8 +48,10 @@ CREATE TABLE IF NOT EXISTS `agent` (
 --
 
 INSERT INTO `agent` (`id`, `email`, `motdepasse`, `nom`, `prenom`, `id_profil`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL);
+(1, NULL, NULL, 'BOUREL', 'Alexis', 1),
+(2, NULL, NULL, 'NOURRY', 'Jean-Luc', 2),
+(3, NULL, NULL, 'SUZANNE', 'Jordan', 1),
+(4, NULL, NULL, 'NESIC', 'Alexandre', 2);
 
 -- --------------------------------------------------------
 
@@ -221,8 +223,8 @@ COMMIT;
 
 DROP TABLE IF EXISTS affaire;
 CREATE TABLE IF NOT EXISTS affaire (
-    id bigint(20)) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    id_agent bigint(20)) NOT NULL,
+    id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    id_agent bigint(20) NOT NULL,
     titre varchar(45)NOT NULL,
     date_ouverture varchar(25) NOT NULL,
     status varchar(10) NOT NULL,
