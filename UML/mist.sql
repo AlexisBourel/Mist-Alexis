@@ -48,8 +48,10 @@ CREATE TABLE IF NOT EXISTS `agent` (
 --
 
 INSERT INTO `agent` (`id`, `email`, `motdepasse`, `nom`, `prenom`, `id_profil`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL);
+(1, NULL, NULL, 'BOUREL', 'Alexis', 1),
+(2, NULL, NULL, 'NOURRY', 'Jean-Luc', 2),
+(3, NULL, NULL, 'SUZANNE', 'Jordan', 1),
+(4, NULL, NULL, 'NESIC', 'Alexandre', 2);
 
 -- --------------------------------------------------------
 
@@ -219,15 +221,19 @@ ALTER TABLE `utilisateur`
   ADD CONSTRAINT `fk_id_profil` FOREIGN KEY (`id_profil`) REFERENCES `profil` (`id`);
 COMMIT;
 
-DROP TABLE IF EXISTS `affaire`;
+DROP TABLE IF EXISTS affaire;
 CREATE TABLE IF NOT EXISTS affaire (
-    id smallint(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    id_agent smallint(5) NOT NULL,
+    id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    id_agent bigint(20) NOT NULL,
     titre varchar(45)NOT NULL,
     date_ouverture varchar(25) NOT NULL,
     status varchar(10) NOT NULL,
     date_cloture varchar(25),
     description text NOT NULL);
+		
+ALTER TABLE affaire
+  ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);
+COMMIT;		
 
 
 INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
