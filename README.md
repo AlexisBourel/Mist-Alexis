@@ -41,11 +41,10 @@ ou l'importer (voir ci dessous)
 
 Allez dans le dossier Ressources (Mist-Springboot/src/main/ressources) : 
 
-Dedans se trouve fichier "mist.sql" qui permet de construire la base de données et la remplir avec quelques entrée de test)
-Ainsi que "application.properties" (y indiquer les informations de connection a votre base de données)
+Dedans se trouve fichier "application.properties", il faut indiquer les informations de connection a votre base de données (url, et identiffiants admins 
 
 Lancer le server sql, 
-importer la base de données (avec le fichier mist.sql https://www.it-connect.fr/importer-un-fichier-sql-en-ligne-de-commande%EF%BB%BF/)
+importer la base de données (avec le fichier mist.sql présent dans le dossier UML https://www.it-connect.fr/importer-un-fichier-sql-en-ligne-de-commande%EF%BB%BF/)
 
 
 
@@ -98,6 +97,12 @@ https://github.com/Hemoroide/mist_angular
 @Google, pour tout le reste
 
 Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est relié a la table "affaire" 
+  Pour l'import de la base SQL, j'ai édité le fichier mist.sql venant du projet de groupe et y ai rajouté les lignes 222 à 246 ( de 		'DROP TABLE IF EXISTS affaire;'
+  	à 
+  	'VALUES (4, "Les Dessous de Miami", "14 octobre 2002", "Ouverte", "Résumé4");':
+  
+  222 à 
+
   Il faut aller sur le boutton "GESTION" puis cliquer sur "affaires" en dessous du header
   les bouttons lister et ajouter affaire fonctionnent correctement tandis que les bouttons modifier et supprimer ne s'affiche pas sur le front, mais l'api fonctionne correctement (test sur POSTMAN via les URL suivant :
   
