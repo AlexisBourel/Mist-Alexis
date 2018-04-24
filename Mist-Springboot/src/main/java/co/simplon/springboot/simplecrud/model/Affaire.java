@@ -9,11 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Table(name = "affaire")
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Affaire implements Serializable{
 	
 
@@ -28,7 +26,7 @@ public class Affaire implements Serializable{
 	private long id;
 	
 	@Column(name="id_agent")
-	private int idAgent;
+	private long idAgent;
 	@Column(name="titre")
 	private String titre;
 	@Column(name="date_ouverture")
@@ -47,10 +45,10 @@ public class Affaire implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public int getIdAgent() {
+	public long getIdAgent() {
 		return idAgent;
 	}
-	public void setIdAgent(int idAgent) {
+	public void setIdAgent(long idAgent) {
 		this.idAgent = idAgent;
 	}
 	public String getTitre() {
@@ -83,8 +81,5 @@ public class Affaire implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	
+
 }

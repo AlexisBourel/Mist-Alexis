@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.springboot.simplecrud.model.Affaire;
-import co.simplon.springboot.simplecrud.service.AffaireService;
+import co.simplon.springboot.simplecrud.service.impl.JdbcAffaireServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class AffaireController {
 	
 	@Autowired
-	AffaireService affaireService;
+	JdbcAffaireServiceImpl affaireService;
 	
 	@CrossOrigin
 	@GetMapping("/affaire")
