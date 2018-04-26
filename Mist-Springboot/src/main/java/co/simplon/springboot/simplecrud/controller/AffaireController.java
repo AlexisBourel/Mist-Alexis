@@ -61,9 +61,7 @@ public class AffaireController {
 		affaireToUpdate.setTitre(affaire.getTitre());
 		affaireToUpdate.setDateOuverture(affaire.getDateOuverture());
 		affaireToUpdate.setStatus(affaire.getStatus());
-		affaireToUpdate.setDescription(affaire.getDescription());
-		
-		
+				
 		// Update all other not null attributes
 		
 		if(affaire.getDateCloture() != null)

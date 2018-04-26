@@ -35,8 +35,7 @@ public class Affaire implements Serializable{
 	private String status;
 	@Column(name="date_cloture")
 	private String dateCloture;
-	@Column(name="description")
-	private String description;
+
 	
 	
 	public long getId() {
@@ -75,11 +74,6 @@ public class Affaire implements Serializable{
 	public void setDateCloture(String dateCloture) {
 		this.dateCloture = dateCloture;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 
 }

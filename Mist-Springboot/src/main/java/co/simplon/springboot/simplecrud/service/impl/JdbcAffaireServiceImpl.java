@@ -136,15 +136,15 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 
 		try {
 			// Prepare the SQL query
-			String sql = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, date_cloture, description) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, date_cloture) VALUES (?,?,?,?,?)";
 			pstmt = datasource.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			// pstmt.setLong(++i, affaire.getId());
+			//pstmt.setLong(++i, affaire.getId());
 			pstmt.setLong(++i, affaire.getIdAgent());
 			pstmt.setString(++i, affaire.getTitre());
 			pstmt.setString(++i, affaire.getDateOuverture());
 			pstmt.setString(++i, affaire.getStatus());
 			pstmt.setString(++i, affaire.getDateCloture());
-			pstmt.setString(++i, affaire.getDescription());
+			
 
 			// Run the the update query
 			pstmt.executeUpdate();
@@ -186,14 +186,13 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 		try {
 			// Prepare the SQL query
 			String sql = "UPDATE affaire SET id_agent = ?, titre = ?, date_ouverture = ?,"
-					+ " status = ?, date_cloture = ?, description = ?, last_update = ? WHERE id = ?";
+					+ " status = ?, date_cloture = ? WHERE id = ?";
 			pstmt = datasource.getConnection().prepareStatement(sql);
 			pstmt.setLong(++i, affaire.getIdAgent());
 			pstmt.setString(++i, affaire.getTitre());
 			pstmt.setString(++i, affaire.getDateOuverture());
 			pstmt.setString(++i, affaire.getStatus());
 			pstmt.setString(++i, affaire.getDateCloture());
-			pstmt.setString(++i, affaire.getDescription());
 			pstmt.setLong(++i, affaire.getId());
 
 			// Run the the update query
@@ -268,8 +267,8 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 		affaire.setTitre(rs.getString("titre"));
 		affaire.setDateOuverture(rs.getString("date_ouverture"));
 		affaire.setStatus(rs.getString("status"));
-		affaire.setDateCloture(rs.getString("date_cloture"));
-		affaire.setDescription(rs.getString("description"));
+		//affaire.setDateCloture(rs.getString("date_cloture"));
+	
 
 		return affaire;
 	}

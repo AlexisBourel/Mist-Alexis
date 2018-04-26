@@ -1,19 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AgentService } from './agent.service';
-
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-
-  constructor(private agentService: AgentService) {}
-
-  ngOnInit() {
-    this.agentService.getAllAgent();
-  }
-
+export class AppComponent {
+  title = 'app';
 }

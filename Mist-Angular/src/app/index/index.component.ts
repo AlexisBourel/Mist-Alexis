@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,16 +11,9 @@ export class IndexComponent implements OnInit {
 
 authStatus: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.authStatus = this.authService.isAuth;
-  }
+  ngOnInit() { }
 
-  onDeconnexion(){
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
-    this.router.navigate(['/auth']);
-  }
-
+  onDeconnexion() { }
 }

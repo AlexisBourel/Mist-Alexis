@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('mist App', () => {
+describe('mist-angular-new App', () => {
   let page: AppPage;
 
   beforeEach(() => {

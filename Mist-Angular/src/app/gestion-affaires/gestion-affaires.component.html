@@ -1,0 +1,62 @@
+<div class="example-container">
+    <div class="example-header">
+      <ng-container >
+          <button class="btn-block btn-lg  waves-light" routerLink="creer">Créer Affaire</button>
+      </ng-container>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+      </mat-form-field>
+      
+    </div>
+    <mat-table #table [(dataSource)]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Affaire Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.id}} </mat-cell>
+          </ng-container>
+        
+      <ng-container matColumnDef="idAgent">
+        <mat-header-cell *matHeaderCellDef> Agent Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.idAgent}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="titre">
+        <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.titre }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOuverture">
+        <mat-header-cell *matHeaderCellDef> Date d'ouverture </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.dateOuverture}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.status}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dateCloture">
+          <mat-header-cell *matHeaderCellDef> Date de Cloture </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.dateCloture}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button class="btn" routerLink="{{element.id}}">Modifier</button>
+        </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button class="btn" (click)="onDelete(element.id)">Supprimer</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  
+    </mat-table>
+    <mat-paginator [length]="5" [pageSize]="10" [pageSizeOptions]="[10, 20, 30]">
+    </mat-paginator>
