@@ -65,18 +65,10 @@ L'application étant séparer en deux parties, il faut les démarrer toutes les 
       - cd target
       - java -jar java-springboot-simplecrud-0.0.1-SNAPSHOT.jar"
       
-    2. Importer le projet dans un EDI:
+    2. Sans créer de .jar :
     
-      - Click Droit dans le "package explorer" 
-      - Séléctionner "import"
-      - "Existing Maven Project"
-      - Parcourir (bouton) dans les dossier afin de retrouver l'emplacement du dossier et y retrouver le pom.xml
-      - "Valider"
-      - Click Droit sur le dossier du projet
-      - "Run as"
-      - "Spring Boot App"
-
-
+      Ouvrez une invite de commande dans le dossier "Mist-Springboot" et lance la ligne suivante :
+      - mvn run -DskipTests
 
 -- Lancer l'application angular --
 
@@ -96,27 +88,11 @@ https://github.com/simplonco/java-workshops-springboot-simplecrud
 https://github.com/Hemoroide/mist_angular
 @Google, pour tout le reste
 
-Ps (coté formateur): La partie que j'ai développé seul est tout ce qui est relié a la table "affaire" 
-  Pour l'import de la base SQL, j'ai réécri le fichier Mist-Alexis.sql 
+Ps (coté formateur):
+  Lors de la migration jpa vers JDBC, j'ai eu des problèmes, des bugs anormaux sont apparus, j'ai donc recrée un projet ou j'ai épuré tout ce qui ne concernais pas la partie affaires.
 
-  Il faut aller sur le boutton "GESTION" puis cliquer sur "affaires" en dessous du header
-  les bouttons lister et ajouter affaire fonctionnent correctement tandis que les bouttons modifier et supprimer ne s'affiche pas sur le front, mais l'api fonctionne correctement (test sur POSTMAN via les URL suivant :
+  Pour voir le résultat, il faut aller sur le boutton "GESTION" directement de la page d'accueil, (j'ai enlevé la page de connexion qui n'était pas fonctionnelle)
+  L'affichage de la liste d'affaires s'affiche automatiquement, dans le meilleur des monde (la V2),j'ai essayer de faire une version imbricable directement dans le projet groupe (voirs les mock-up) ou gestion retourne plusieurs onglet (affaires, vehicules, armes et suspects), mais n'étant pas présente dans mon projet, j'ai affiché directement la liste sans passer par l'onglet.
+  De plus j'ai rajouter un gros bouton "créer affaire" qui dans la V2 devrait faire partie de l'onglet "affaire" (qui contiendrais donc deux options, liste et créer).
   
-  
-    PUT http://localhost:8080/api/affaire/{{id}} 
-     
-    exemple : 
-    PUT http://localhost:8080/api/affaire/1
-    avec {
-        "id": 1,
-        "idAgent": 1,
-        "titre": "Entrée Test",
-        "dateOuverture": "23 septembre 2002",
-        "status": "Ouverte",
-        "dateCloture": null,
-        "description": "Test résumé"
-    } en format JSON
-    
-    DELETE http://localhost:8080/api/affaire/{{id}} 
-      
-   {{id}} à remplacer par l'id d'une affaire éxistante dans la BDD
+  Pour l'import de la base SQL, j'ai réécri entierement le fichier Mist-Alexis.sql, ce fichier ainsi que les autres UML sont disponibles dans un nouveau dossier à la racine, "UML".
