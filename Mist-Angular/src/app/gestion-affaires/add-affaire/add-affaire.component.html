@@ -1,46 +1,34 @@
 <div class="col-sm-8 col-sm-offset-2">
 
-    <form (ngSubmit)="onSubmit()" [formGroup]='affaireForm'>
-
-      <div class="row">
-      <div class="information col-md-5">
-        <div class="form-group">
-          <label for="titre">Nom de l'affaire</label>
-          <input type="text" class="form-control" id="titre" name="titre"  formControlName="titre">
-        </div>
-
-        <div class="form-group">
-          <div class="form-group">
-            <label for="idAgent">Id de l'Agent responsable de l'affaire</label>
-            <input type="number" class="form-control" id="id" name="idAgent" formControlName="idAgent">
-          </div>
-        </div>
-        </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]='affaireForm'>
+    <div class="form-values">
+        <div class="form-group">          
+            <br><br/>
+          <mat-form-field >
+              <input matInput placeholder="NOM DE L'AFFAIRE" name="titre">
+          </mat-form-field>
         
-      <div class="affaire col-md-5 offset-md-1">
-          <div class="form-group">
-              <div class="form-group">
-                <label for="dateOuverture">Date d'ouverture de l'affaire</label>
-                <input type="dateOuverture" class="form-control" id="dateOuverture" name="dateOuverture" formControlName="dateOuverture">
-              </div>
-            </div>
-
-        <div class="form-group">
-          <label for="status">Status de l'affaire</label>
-          <input type="status" id="status" class="form-control" name="status" formControlName="status">
-        </div>
-		
-		<div class="form-group">
-          <label for="dateCloture">Date de cloture (si Affaire résolue)</label>
-          <input type="dateCloture" id="dateCloture" class="form-control" name="dateCloture" formControlName="dateCloture">
-        </div>
-	
+          <mat-form-field>
+            <mat-select placeholder="RESPONSABLE"name="agentId">
+              <mat-option *ngFor="let agent of agents" [value]="agent.value">
+                {{agent.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>    
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" type="date" placeholder="Date d'ouverture">
+          <mat-datepicker-toggle matSuffix [for]="picker">            
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field><br>
+        <mat-form-field class="text-area">
+            <textarea matInput placeholder="Résumé de l'affaire"></textarea>
+        </mat-form-field> 
       </div>
 
-      </div>
-
-      <button type="submit" class="btn btn-primary">Envoyer</button>
+  <button type="submit" class="btn btn-primary">Envoyer</button>
            
-    </form>
+  </form>
 
-    </div>
+</div>

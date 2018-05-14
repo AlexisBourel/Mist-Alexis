@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule, MatToolbarModule, MatPaginator, MatPaginatorModule, MatMenuModule, MatIconModule, MatSelectModule } from '@angular/material';
+import { MatTableModule, MatToolbarModule, MatPaginator, MatPaginatorModule, MatMenuModule, MatIconModule, MatSelectModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 
@@ -20,6 +19,8 @@ import { GestionAffairesComponent } from './gestion-affaires/gestion-affaires.co
 import { AffairesService } from './gestion-affaires/affaires.service';
 import { AddAffaireComponent } from './gestion-affaires/add-affaire/add-affaire.component';
 import { UpdateAffaireComponent } from './gestion-affaires/update-affaire/update-affaire.component';
+import { ListAffairesComponent } from './gestion-affaires/list-affaires/list-affaires.component';
+ 
 
 
 
@@ -34,28 +35,33 @@ import { UpdateAffaireComponent } from './gestion-affaires/update-affaire/update
     GestionAffairesComponent,
     AddAffaireComponent,
     UpdateAffaireComponent,
+    ListAffairesComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
     NgbModule.forRoot(),
     NgbModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSelectModule,
-    BrowserAnimationsModule,
+    HttpModule,
+    HttpClientModule,
+    
+    
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
-    HttpModule,
-    HttpClientModule,
     MatTableModule,
     MatToolbarModule,
-    CommonModule,
+    MatSelectModule,
     MatPaginatorModule,
     MatMenuModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [CommonModule, MatToolbarModule, MatInputModule, MatTableModule],
 

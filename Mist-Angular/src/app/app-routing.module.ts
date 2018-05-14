@@ -7,6 +7,7 @@ import { IndexComponent } from './index/index.component';
 import { GestionAffairesComponent } from './gestion-affaires/gestion-affaires.component';
 import { UpdateAffaireComponent } from './gestion-affaires/update-affaire/update-affaire.component';
 import { AddAffaireComponent } from './gestion-affaires/add-affaire/add-affaire.component';
+import { ListAffairesComponent } from './gestion-affaires/list-affaires/list-affaires.component';
 
 const routes: Routes = [
 
@@ -14,16 +15,20 @@ const routes: Routes = [
 
   { path: 'index', component: IndexComponent, children: [
 
-    { path: 'gestion-affaires', component: GestionAffairesComponent},
+    { path: 'gestion-affaires', component: GestionAffairesComponent, children: [
+      { path: 'list', component: ListAffairesComponent },
+     ] },
     { path: 'gestion-affaires/creer', component: AddAffaireComponent },
-    { path: 'gestion-affaires/:id', component: UpdateAffaireComponent }
+    { path: 'gestion-affaires/:id', component: UpdateAffaireComponent },
+    { path: 'gestion-affaires/list', component: ListAffairesComponent },
+    { path: 'list', component: ListAffairesComponent}
     
     ]
   },
   
   { path: 'nav', component: NavComponent},
-  { path : '404', component: Page404Component},
-  { path: '**', redirectTo: '404' }
+  //{ path : '404', component: Page404Component},
+  //{ path: '**', redirectTo: '404' }
   
 ]
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,19 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.springboot.simplecrud.model.Affaire;
-import co.simplon.springboot.simplecrud.service.impl.JdbcAffaireServiceImpl;
+import co.simplon.springboot.simplecrud.service.impl.AffaireServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class AffaireController {
 	
 	@Autowired
-	JdbcAffaireServiceImpl affaireService;
+	AffaireServiceImpl affaireService;
 	
 	@CrossOrigin
 	@GetMapping("/affaire")
-	List<Affaire> getAllAffaires(){
-		return affaireService.getAllAffaires();
+	ResponseEntity<List<Affaire>> getAllAffaires(){		
+		return ResponseEntity.status(HttpStatus.OK).body(affaireService.getAllAffaires());
 	}
 	
 	
@@ -45,13 +46,22 @@ public class AffaireController {
 	
 	@CrossOrigin
 	@PostMapping("/affaire")
-	Affaire addAffaire(@Valid @RequestBody Affaire affaire){
-		return this.affaireService.addAffaire(affaire);
+	ResponseEntity<?> addAffaire(@Valid @RequestBody Affaire affaire){
+		if (affaire.getDateOuverture() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Veuillez renseigner la date d'ouverture de l'enquête");
+		}
+		if (affaire.getTitre() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Veuillez renseigner le titre de l'enquête");
+		}
+		if (affaire.getIdAgent() == 0) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Veuillez renseigner le responsable de l'enquête");
+		}		
+		return ResponseEntity.status(HttpStatus.OK).body(affaireService.addAffaire(affaire));
 	}
 	
 	@CrossOrigin
 	@PutMapping("/affaire/{id}")
-	ResponseEntity<Affaire> updateAffaire(@PathVariable(value="id") long id, @Valid @RequestBody Affaire affaire){
+	ResponseEntity<?> updateAffaire(@PathVariable(value="id") long id, @Valid @RequestBody Affaire affaire){
 		Affaire affaireToUpdate = affaireService.getAffaire(id);
 		if(affaireToUpdate == null)
 			return ResponseEntity.notFound().build();
@@ -68,12 +78,13 @@ public class AffaireController {
 			affaireToUpdate.setDateCloture(affaire.getDateCloture());
 		
 		Affaire updatedaffaire = affaireService.saveAffaire(affaireToUpdate);
+		
 		return ResponseEntity.ok(updatedaffaire);
 	}
 	
 	@CrossOrigin
 	@DeleteMapping("/affaire/{id}")
-	ResponseEntity<Affaire> deleteAffaire(@PathVariable(value="id") long id){
+	ResponseEntity<?> deleteAffaire(@PathVariable(value="id") long id){
 		Affaire affaire = affaireService.getAffaire(id);
 		if(affaire == null)
 			return ResponseEntity.notFound().build();

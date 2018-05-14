@@ -1,28 +1,24 @@
-package co.simplon.springboot.simplecrud.service.impl;
+package co.simplon.springboot.simplecrud.dao.impl;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
 
+import co.simplon.springboot.simplecrud.dao.AffaireDao;
 import co.simplon.springboot.simplecrud.model.Affaire;
-import co.simplon.springboot.simplecrud.service.AffaireService;
 
-/**
- * JDBC implementation of the Affaire DAO interface.
- */
-@Service
-public class JdbcAffaireServiceImpl implements AffaireService {
-
+public class AffaireJdbcDAo implements AffaireDao{
+	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private DataSource datasource;
 
@@ -33,7 +29,7 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 	 *            : the JDBCTemplace connected to the Database (thanks to Spring)
 	 */
 	@Autowired
-	public JdbcAffaireServiceImpl(JdbcTemplate jdbcTemplate) {
+	public AffaireJdbcDAo(JdbcTemplate jdbcTemplate) {
 		this.datasource = jdbcTemplate.getDataSource();
 	}
 
@@ -64,7 +60,7 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 				aLlistOfAffaire.add(affaire);
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 
 			log.error("SQL Error !:", e);
 
@@ -109,10 +105,10 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 			log.error("SQL Error !:", e);
 		} finally {
 			try {
-				if(pstmt != null)
-				pstmt.close();
+				if (pstmt != null)
+					pstmt.close();
 			} catch (SQLException e) {
-				//Nothing to do
+				// Nothing to do
 			}
 		}
 		return affaire;
@@ -136,15 +132,13 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 
 		try {
 			// Prepare the SQL query
-			String sql = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, date_cloture) VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, description) VALUES (?,?,?,?,?)";
 			pstmt = datasource.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			//pstmt.setLong(++i, affaire.getId());
 			pstmt.setLong(++i, affaire.getIdAgent());
 			pstmt.setString(++i, affaire.getTitre());
-			pstmt.setString(++i, affaire.getDateOuverture());
-			pstmt.setString(++i, affaire.getStatus());
-			pstmt.setString(++i, affaire.getDateCloture());
-			
+			pstmt.setDate(++i, (Date) Date.valueOf(LocalDate.now()));
+			pstmt.setString(++i, "ouverte");
+			pstmt.setString(++i, affaire.getDescription());
 
 			// Run the the update query
 			pstmt.executeUpdate();
@@ -163,7 +157,7 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (SQLException e) {
-				//Nothing to do
+				// Nothing to do
 			}
 		}
 
@@ -185,14 +179,14 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 
 		try {
 			// Prepare the SQL query
-			String sql = "UPDATE affaire SET id_agent = ?, titre = ?, date_ouverture = ?,"
-					+ " status = ?, date_cloture = ? WHERE id = ?";
+			String sql = "UPDATE affaire SET id_agent = ?, titre = ?,"
+					+ " status = ?, date_cloture = ?,description = ? WHERE id = ?";
 			pstmt = datasource.getConnection().prepareStatement(sql);
 			pstmt.setLong(++i, affaire.getIdAgent());
 			pstmt.setString(++i, affaire.getTitre());
-			pstmt.setString(++i, affaire.getDateOuverture());
-			pstmt.setString(++i, affaire.getStatus());
-			pstmt.setString(++i, affaire.getDateCloture());
+			pstmt.setString(++i, affaire.getStatus()); 
+			pstmt.setDate(++i, (Date) affaire.getDateCloture());
+			pstmt.setString(++i, affaire.getDescription());
 			pstmt.setLong(++i, affaire.getId());
 
 			// Run the the update query
@@ -236,7 +230,7 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 			// Run the the update query
 			int result = pstmt.executeUpdate();
 			if (result != 1)
-				log.info("Affaire not Found", pstmt.toString());
+				log.info("Affaire not Found ", pstmt.toString());
 
 			log.info("Result : ", result);
 		} catch (SQLException e) {
@@ -256,22 +250,26 @@ public class JdbcAffaireServiceImpl implements AffaireService {
 	/**
 	 * Build an affaire object with data from the ResultSet
 	 * 
-	 * @param rs
-	 *            : the ResultSet to process.
+	 * @param rs : the ResultSet to process.
 	 * @return Affaire : The new Affaire object
 	 */
-	private Affaire getAffaireFromResultSet(ResultSet rs) throws SQLException {
+	public Affaire getAffaireFromResultSet(ResultSet rs) throws SQLException {
 		Affaire affaire = new Affaire();
+		//attribution des collones "NOT NULL"
 		affaire.setId(rs.getLong("id"));
 		affaire.setIdAgent(rs.getLong("id_agent"));
 		affaire.setTitre(rs.getString("titre"));
-		affaire.setDateOuverture(rs.getString("date_ouverture"));
+		affaire.setDateOuverture(rs.getDate("date_ouverture"));
 		affaire.setStatus(rs.getString("status"));
-		//affaire.setDateCloture(rs.getString("date_cloture"));
-	
+		//attribution des valeurs qui peuvent êtres nulles
+		if (rs.getDate("date_cloture") != null) {
+			affaire.setDateCloture(rs.getDate("date_cloture"));
+		}
+		if (rs.getDate("description") != null ) {
+			affaire.setDescription(rs.getString("description"));
+		}
 
 		return affaire;
 	}
-
-
+	
 }
