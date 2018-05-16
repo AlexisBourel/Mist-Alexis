@@ -1,0 +1,60 @@
+<h3>Modifier Affaire</h3>
+<div [hidden]="submitted">
+    <form (ngSubmit)="updateAffaire()" *ngIf="affaire">
+        <div class="formGroup">
+            <mat-form-field >
+              <input matInput placeholder="NOM DE L'AFFAIRE" [(ngModel)]="affaire.titre" name="titre" required >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="RESPONSABLE" id="idAgent" [(ngModel)]="affaire.idAgent" name="idAgent" required>
+                <mat-option *ngFor="let agent of agents" [value]="agent.value">
+                  {{agent.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="formGroup">        
+            <mat-form-field>
+                <mat-select placeholder="STATUS" id="status" required [(ngModel)]="affaire.status" name="status">
+                  <mat-option *ngFor="let status of status" [value]="status.value">
+                        {{status.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="formGroup">  
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Date d'ouverture mm/dd/yyyy" [(ngModel)]="affaire.dateOuverture" name="dateOuverture" required>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="Date de cloture" [(ngModel)]="affaire.dateCloture" name="dateCloture">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>   
+          <div class="formGroup">
+            <div class="formInputDate" >
+              <mat-form-field class="text-area">
+                <textarea matInput id="description" required [(ngModel)]="affaire.description" name="description" placeholder="DESCRIPTION"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="formClear"></div>
+          </div>
+          <p>* Champs requis</p>
+          <div class="buttonGroup">
+            <button type="submit">Modifier</button>
+            <button routerLink="index/gestion-affaires">Annuler</button>
+          </div>
+    </form>
+</div>
+ 
+<div [hidden]="!submitted">
+  <div class="formGroup">
+    <h4>Modification réussie !</h4>
+  </div>
+  <div class="message">
+    <button routerLink="/affaire">Retour aux affaires</button>
+  </div>
+</div>

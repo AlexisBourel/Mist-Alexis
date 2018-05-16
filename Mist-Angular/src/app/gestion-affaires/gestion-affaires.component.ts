@@ -5,7 +5,7 @@ import {DataSource} from '@angular/cdk/collections';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Affaire } from './affaire';
-import { AffairesService } from './affaires.service';
+import { AffaireService } from './affaire.service';
 
 @Component({
   selector: 'app-gestion-affaires',
@@ -18,7 +18,7 @@ export class GestionAffairesComponent implements OnInit {
 
   affaires: Affaire[];
 
-  displayedColumns = ['id', 'idAgent', 'titre', 'dateOuverture', 'status',
+  displayedColumns = ['id', 'idAgent', 'titre','description', 'dateOuverture', 'status',
                   'dateCloture','edit', 'delete'];
   dataSource = new MatTableDataSource();
 
@@ -28,7 +28,7 @@ export class GestionAffairesComponent implements OnInit {
    this.dataSource.filter = filterValue;
   }
 
-  constructor(private affaireService: AffairesService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private affaireService: AffaireService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadAffaire();
@@ -43,7 +43,10 @@ export class GestionAffairesComponent implements OnInit {
   loadAffaire(){
     this.affaireService.getAllAffaire().subscribe(
       data => { this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator; }
+      this.dataSource.paginator = this.paginator;
+      console.log(data);
+      console.log("affaires loaded");
+     }
     );
   }
 

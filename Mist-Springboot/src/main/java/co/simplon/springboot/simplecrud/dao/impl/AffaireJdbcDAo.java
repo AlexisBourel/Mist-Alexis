@@ -1,10 +1,8 @@
 package co.simplon.springboot.simplecrud.dao.impl;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import co.simplon.springboot.simplecrud.dao.AffaireDao;
 import co.simplon.springboot.simplecrud.model.Affaire;
 
+@Component
 public class AffaireJdbcDAo implements AffaireDao{
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -132,13 +132,14 @@ public class AffaireJdbcDAo implements AffaireDao{
 
 		try {
 			// Prepare the SQL query
-			String sql = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, description) VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO affaire (id_agent, titre, date_ouverture, status, description, date_cloture) VALUES (?,?,?,?,?,?)";
 			pstmt = datasource.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setLong(++i, affaire.getIdAgent());
 			pstmt.setString(++i, affaire.getTitre());
-			pstmt.setDate(++i, (Date) Date.valueOf(LocalDate.now()));
-			pstmt.setString(++i, "ouverte");
+			pstmt.setDate(++i, affaire.getDateOuverture());
+			pstmt.setString(++i, affaire.getStatus());
 			pstmt.setString(++i, affaire.getDescription());
+			pstmt.setDate(++i, affaire.getDateCloture());
 
 			// Run the the update query
 			pstmt.executeUpdate();
@@ -168,8 +169,7 @@ public class AffaireJdbcDAo implements AffaireDao{
 	/**
 	 * Update an existing affaire.
 	 * 
-	 * @param affaire
-	 *            : the affaire information.
+	 * @param affaire: the affaire information.
 	 */
 	@Override
 	public Affaire saveAffaire(Affaire affaire) {
@@ -179,16 +179,19 @@ public class AffaireJdbcDAo implements AffaireDao{
 
 		try {
 			// Prepare the SQL query
-			String sql = "UPDATE affaire SET id_agent = ?, titre = ?,"
-					+ " status = ?, date_cloture = ?,description = ? WHERE id = ?";
+			String sql = "UPDATE affaire "
+					   + "SET date_cloture = ?, date_ouverture = ?, description = ?, id_agent = ?, status = ?, titre = ? "
+					   + "WHERE id = ?";
 			pstmt = datasource.getConnection().prepareStatement(sql);
-			pstmt.setLong(++i, affaire.getIdAgent());
-			pstmt.setString(++i, affaire.getTitre());
-			pstmt.setString(++i, affaire.getStatus()); 
-			pstmt.setDate(++i, (Date) affaire.getDateCloture());
+			pstmt.setDate(++i, affaire.getDateCloture());
+			pstmt.setDate(++i, affaire.getDateOuverture());			
 			pstmt.setString(++i, affaire.getDescription());
-			pstmt.setLong(++i, affaire.getId());
-
+			pstmt.setLong(++i, affaire.getIdAgent());
+			pstmt.setString(++i, affaire.getStatus());
+			pstmt.setString(++i, affaire.getTitre());
+			
+			pstmt.setLong(++i, affaire.getId());			
+			
 			// Run the the update query
 			int resultCount = pstmt.executeUpdate();
 			if (resultCount != 1)
@@ -261,14 +264,11 @@ public class AffaireJdbcDAo implements AffaireDao{
 		affaire.setTitre(rs.getString("titre"));
 		affaire.setDateOuverture(rs.getDate("date_ouverture"));
 		affaire.setStatus(rs.getString("status"));
+		affaire.setDescription(rs.getString("description"));
 		//attribution des valeurs qui peuvent êtres nulles
 		if (rs.getDate("date_cloture") != null) {
 			affaire.setDateCloture(rs.getDate("date_cloture"));
 		}
-		if (rs.getDate("description") != null ) {
-			affaire.setDescription(rs.getString("description"));
-		}
-
 		return affaire;
 	}
 	

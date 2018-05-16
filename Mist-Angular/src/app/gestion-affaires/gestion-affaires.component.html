@@ -1,7 +1,7 @@
 <div class="example-container">
     <div class="example-header">
       <ng-container>
-        <button class="btn-block btn-lg  waves-light" routerLink="creer">Ouvrir une affaire</button>
+        <button class="btn-block btn-lg  waves-light" routerLink="new">NEW AFFAIRE</button>
         <button class="btn-block btn-lg  waves-light" routerLink="list">Liste des affaires</button>
       </ng-container>
       <mat-form-field>
@@ -26,19 +26,19 @@
       </ng-container>
 
       <ng-container matColumnDef="description">
-          <mat-header-cell *matHeaderCellDef> Résumé </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
-        </ng-container>
-
-      <ng-container matColumnDef="dateOuverture">
-        <mat-header-cell *matHeaderCellDef> Date d'ouverture </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.dateOuverture}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.status}} </mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="dateOuverture">
+        <mat-header-cell *matHeaderCellDef> Date d'ouverture </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.dateOuverture}} </mat-cell>
+      </ng-container>      
 
       <ng-container matColumnDef="dateCloture">
           <mat-header-cell *matHeaderCellDef> Date de Cloture </mat-header-cell>

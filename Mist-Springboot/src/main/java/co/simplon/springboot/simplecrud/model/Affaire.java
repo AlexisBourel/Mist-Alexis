@@ -1,7 +1,7 @@
 package co.simplon.springboot.simplecrud.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,7 +29,7 @@ public class Affaire implements Serializable{
 	@Column(name="id_agent")
 	private long idAgent;
 	@NotNull
-	@Column(name="titre")
+	@Column(name="titre", unique=true)
 	private String titre;
 	@NotNull
 	@Column(name="date_ouverture")

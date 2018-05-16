@@ -16,11 +16,11 @@ import { NavComponent } from './nav/nav.component';
 import { Page404Component } from './page-404/page-404.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GestionAffairesComponent } from './gestion-affaires/gestion-affaires.component';
-import { AffairesService } from './gestion-affaires/affaires.service';
-import { AddAffaireComponent } from './gestion-affaires/add-affaire/add-affaire.component';
-import { UpdateAffaireComponent } from './gestion-affaires/update-affaire/update-affaire.component';
 import { ListAffairesComponent } from './gestion-affaires/list-affaires/list-affaires.component';
- 
+import { CreateAffaireComponent } from './gestion-affaires/create-affaire/create-affaire.component';
+import { AffaireService } from './gestion-affaires/affaire.service';
+import { EditAffaireComponent } from './gestion-affaires/edit-affaire/edit-affaire.component';
+
 
 
 
@@ -33,9 +33,9 @@ import { ListAffairesComponent } from './gestion-affaires/list-affaires/list-aff
     NavComponent,
     Page404Component,
     GestionAffairesComponent,
-    AddAffaireComponent,
-    UpdateAffaireComponent,
     ListAffairesComponent,
+    CreateAffaireComponent,
+    EditAffaireComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +65,9 @@ import { ListAffairesComponent } from './gestion-affaires/list-affaires/list-aff
   ],
   exports: [CommonModule, MatToolbarModule, MatInputModule, MatTableModule],
 
-  providers: [AffairesService],
+  providers: [
+    AffaireService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

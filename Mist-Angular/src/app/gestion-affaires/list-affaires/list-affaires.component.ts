@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Affaire } from '../affaire';
-import { AffairesService } from '../affaires.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AffaireService } from '../affaire.service';
 
 @Component({
   selector: 'app-list-affaires',
@@ -25,7 +25,7 @@ export class ListAffairesComponent  implements OnInit {
    this.dataSource.filter = filterValue;
   }
 
-  constructor(private affaireService: AffairesService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private affaireService: AffaireService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadAffaire();

@@ -6,6 +6,7 @@ export class Affaire {
     dateOuverture: Date;
     status: String;
     dateCloture: Date;
+    description: String;
   
 
 //    constructor(idAgent,

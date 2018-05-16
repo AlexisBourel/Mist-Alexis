@@ -1,5 +1,7 @@
 package co.simplon.springboot.simplecrud.service.impl;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,13 @@ public class AffaireServiceImpl implements AffaireService {
 
 	@Autowired
 	AffaireDao dao;
-	
+
 	public void mockAffaires(String titre, String description, Long idAgent) {
 		Affaire affaire = new Affaire();
 		affaire.setTitre(titre);
 		affaire.setDescription(description);
 		affaire.setIdAgent(idAgent);
+		affaire.setDateOuverture(Date.valueOf(LocalDate.now()));
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class AffaireServiceImpl implements AffaireService {
 	@Override
 	public void deleteAffaire(Affaire affaire) {
 		dao.deleteAffaire(affaire);
-		
+
 	}
 
 	@Override
