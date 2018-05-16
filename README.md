@@ -6,7 +6,7 @@ https://windows.developpez.com/cours/ligne-commande/
 
 
 
-** CONFIGURATION REQUISE **
+# CONFIGURATION REQUISE 
 
 - JRE installer sur l'ordinateur (v 1.8), attention la v 1.9 est déconseillée
 https://www.java.com/fr/download/help/download_options.xml
@@ -26,7 +26,7 @@ un Environnement Developpement Intégré (Eclipse oxygen de préférence) peux �
 
 
 
-**  IMPORT DU PROJET**
+# IMPORT DU PROJET
 
 Installer les prérequis si nécéssaire
 Télécharger le dossier .zip du projet 
@@ -37,7 +37,7 @@ ou l'importer (voir ci dessous)
  
  
  
-**  CONFIGURATION TECHNIQUE   **
+# CONFIGURATION TECHNIQUE 
 
 Tour d'abords il faut crée un base de données
 
@@ -47,7 +47,7 @@ Dedans se trouve fichier "application.properties", il faut indiquer les informat
 
 Lancer le server sql si il ne se lance pas automatiquement au démarage du système d'exploitation (google => 'How to check if mySql server is working'), puis lancer l'application (voir ci dessous). 
 
-** LANCEMENT DE L'APPLICATION **
+# LANCEMENT DE L'APPLICATION 
 
 L'application étant séparer en deux parties, il faut les démarrer toutes les deux pour que l'application fonctionne
 
@@ -77,7 +77,7 @@ L'application étant séparer en deux parties, il faut les démarrer toutes les 
 
 L'application est prête a fonctionner 
 
-** Credits **
+# Credits 
 
 Merci :
 @SMartin81 pour la partie Springboot
@@ -86,11 +86,11 @@ https://github.com/simplonco/java-workshops-springboot-simplecrud
 https://github.com/Hemoroide/mist_angular
 @Google, pour tout le reste
 
-*** POUR LES FORMATEURS ***
+# POUR LES FORMATEURS 
 La création des données fictives / test (Tables + entrées) dans la base de données se fait automatiquement via des méthodes dans les services côté server (Java) au premier appel (un refresh de la page est nécéssaire).
 Les requêtes correspondantes sont : 
 
-# Creation de la table affaire
+*** Creation de la table affaire ***
 CREATE TABLE IF NOT EXISTS affaire (
     id bigint(20) NOT NULL AUTO_INCREMENT, 
     id_agent bigint(20) NOT NULL,
@@ -101,10 +101,10 @@ CREATE TABLE IF NOT EXISTS affaire (
     description text NOT NULL,
 	PRIMARY KEY (id)
 )   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-# Insertion d'une affaire de test
+*** Insertion d'une affaire de test ***
 INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
 VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
-# Ajout d'une contrainte (intéractions entre tables)
+*** Ajout d'une contrainte (intéractions entre tables) ***
 ALTER TABLE affaire
   ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);
 
