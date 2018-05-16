@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.springboot.simplecrud.model.Affaire;
+import co.simplon.springboot.simplecrud.model.Agent;
 import co.simplon.springboot.simplecrud.service.AffaireService;
+import co.simplon.springboot.simplecrud.service.AgentService;
 
 @RestController
 @RequestMapping("/api")
@@ -27,11 +29,23 @@ public class AffaireController {
 	@Autowired
 	AffaireService affaireService;
 	
+	@Autowired
+	AgentService agentService;
+	
 	@CrossOrigin
 	@GetMapping("/affaire")
-	ResponseEntity<List<Affaire>> getAllAffaires(){
+	ResponseEntity<List<Affaire>> getAllAffaires(){		
+		List<Agent> agents = agentService.getAll();
+		if (agents.isEmpty()) { 
+			// vérification de la présence d'agents dans la BDD (les génére au premier appel)
+			agentService.add(agentService.mockAgent("BOUREL", "Alexis", "Administrateur"));
+			agentService.add(agentService.mockAgent("NESIC", "Alexandre", "Scientifique"));
+			agentService.add(agentService.mockAgent("NOURRY", "Jean-Luc", "Officier"));
+			agentService.add(agentService.mockAgent("SUZANNE", "Jordan", "Agent"));
+		}
 		List<Affaire> affaires = affaireService.getAllAffairesJoin();
-		if (affaires.isEmpty()) {
+		if (affaires.isEmpty()) { 
+			// de même que pour les agents
 			affaireService.populateDbWithMockedAffaire();
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(affaires);
