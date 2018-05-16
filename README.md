@@ -39,15 +39,13 @@ ou l'importer (voir ci dessous)
  
 **  CONFIGURATION TECHNIQUE   **
 
+Tour d'abords il faut crée un base de données
+
 Allez dans le dossier Ressources (Mist-Springboot/src/main/ressources) : 
 
-Dedans se trouve fichier "application.properties", il faut indiquer les informations de connection a votre base de données (url, et identiffiants admins 
+Dedans se trouve fichier "application.properties", il faut indiquer les informations de connection a votre base de données (url, et identiffiants admins de connexions)
 
-Lancer le server sql, 
-importer la base de données (avec le fichier Mist-Alexis.sql présent dans le dossier UML https://www.it-connect.fr/importer-un-fichier-sql-en-ligne-de-commande%EF%BB%BF/)
-
-
-
+Lancer le server sql si il ne se lance pas automatiquement au démarage du système d'exploitation (google => 'How to check if mySql server is working'), puis lancer l'application (voir ci dessous). 
 
 ** LANCEMENT DE L'APPLICATION **
 
@@ -88,11 +86,30 @@ https://github.com/simplonco/java-workshops-springboot-simplecrud
 https://github.com/Hemoroide/mist_angular
 @Google, pour tout le reste
 
-Ps (coté formateur):
-  Lors de la migration jpa vers JDBC, j'ai eu des problèmes, des bugs anormaux sont apparus, j'ai donc recrée un projet ou j'ai épuré tout ce qui ne concernais pas la partie affaires.
+*** POUR LES FORMATEURS ***
+La création des données fictives / test (Tables + entrées) dans la base de données se fait automatiquement via des méthodes dans les services côté server (Java) au premier appel (un refresh de la page est nécéssaire).
+Les requêtes correspondantes sont : 
 
-  Pour voir le résultat, il faut aller sur le boutton "GESTION" directement de la page d'accueil, (j'ai enlevé la page de connexion qui n'était pas fonctionnelle)
-  L'affichage de la liste d'affaires s'affiche automatiquement, dans le meilleur des monde (la V2),j'ai essayer de faire une version imbricable directement dans le projet groupe (voirs les mock-up) ou gestion retourne plusieurs onglet (affaires, vehicules, armes et suspects), mais n'étant pas présente dans mon projet, j'ai affiché directement la liste sans passer par l'onglet.
-  De plus j'ai rajouter un gros bouton "créer affaire" qui dans la V2 devrait faire partie de l'onglet "affaire" (qui contiendrais donc deux options, liste et créer).
-  
-  Pour l'import de la base SQL, j'ai réécri entierement le fichier Mist-Alexis.sql, ce fichier ainsi que les autres UML sont disponibles dans un nouveau dossier à la racine, "UML".
+# Creation de la table affaire
+CREATE TABLE IF NOT EXISTS affaire (
+    id bigint(20) NOT NULL AUTO_INCREMENT, 
+    id_agent bigint(20) NOT NULL,
+    titre varchar(45)NOT NULL,
+    date_ouverture varchar(25) NOT NULL,
+    status varchar(10) NOT NULL,
+    date_cloture varchar(25),
+    description text NOT NULL,
+	PRIMARY KEY (id)
+)   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+# Insertion d'une affaire de test
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
+# Ajout d'une contrainte (intéractions entre tables)
+ALTER TABLE affaire
+  ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);
+
+
+
+
+
+
