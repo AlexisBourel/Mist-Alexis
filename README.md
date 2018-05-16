@@ -89,24 +89,25 @@ https://github.com/Hemoroide/mist_angular
 # POUR LES FORMATEURS 
 La création des données fictives / test (Tables + entrées) dans la base de données se fait automatiquement via des méthodes dans les services côté server (Java) au premier appel (un refresh de la page est nécéssaire).
 Les requêtes correspondantes sont : 
-
-*** Creation de la table affaire ***
-CREATE TABLE IF NOT EXISTS affaire (
-    id bigint(20) NOT NULL AUTO_INCREMENT, 
-    id_agent bigint(20) NOT NULL,
-    titre varchar(45)NOT NULL,
-    date_ouverture varchar(25) NOT NULL,
-    status varchar(10) NOT NULL,
-    date_cloture varchar(25),
-    description text NOT NULL,
-	PRIMARY KEY (id)
-)   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-*** Insertion d'une affaire de test ***
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
-*** Ajout d'une contrainte (intéractions entre tables) ***
-ALTER TABLE affaire
-  ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);
+  
+*** Creation de la table affaire ***  
+CREATE TABLE IF NOT EXISTS affaire (  
+    id bigint(20) NOT NULL AUTO_INCREMENT,   
+    id_agent bigint(20) NOT NULL,  
+    titre varchar(45)NOT NULL,  
+    date_ouverture varchar(25) NOT NULL,  
+    status varchar(10) NOT NULL,  
+    date_cloture varchar(25),  
+    description text NOT NULL,  
+	PRIMARY KEY (id)  
+)   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;  
+  
+*** Insertion d'une affaire de test ***  
+INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)  
+VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");  
+*** Ajout d'une contrainte (intéractions entre tables) ***  
+ALTER TABLE affaire  
+  ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);  
 
 
 
