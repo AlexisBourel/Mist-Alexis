@@ -20,6 +20,7 @@ import { ListAffairesComponent } from './gestion-affaires/list-affaires/list-aff
 import { CreateAffaireComponent } from './gestion-affaires/create-affaire/create-affaire.component';
 import { AffaireService } from './gestion-affaires/affaire.service';
 import { EditAffaireComponent } from './gestion-affaires/edit-affaire/edit-affaire.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
 
 
 
@@ -36,6 +37,7 @@ import { EditAffaireComponent } from './gestion-affaires/edit-affaire/edit-affai
     ListAffairesComponent,
     CreateAffaireComponent,
     EditAffaireComponent,
+    AuthentificationComponent,
   ],
   imports: [
     BrowserModule,

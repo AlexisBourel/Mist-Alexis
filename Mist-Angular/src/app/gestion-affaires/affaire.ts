@@ -7,6 +7,7 @@ export class Affaire {
     status: String;
     dateCloture: Date;
     description: String;
+    agentName: String;
   
 
 //    constructor(idAgent,

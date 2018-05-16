@@ -18,19 +18,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.springboot.simplecrud.model.Affaire;
-import co.simplon.springboot.simplecrud.service.impl.AffaireServiceImpl;
+import co.simplon.springboot.simplecrud.service.AffaireService;
 
 @RestController
 @RequestMapping("/api")
 public class AffaireController {
 	
 	@Autowired
-	AffaireServiceImpl affaireService;
+	AffaireService affaireService;
 	
 	@CrossOrigin
 	@GetMapping("/affaire")
-	ResponseEntity<List<Affaire>> getAllAffaires(){		
-		return ResponseEntity.status(HttpStatus.OK).body(affaireService.getAllAffaires());
+	ResponseEntity<List<Affaire>> getAllAffaires(){
+		List<Affaire> affaires = affaireService.getAllAffairesJoin();
+		if (affaires.isEmpty()) {
+			affaireService.populateDbWithMockedAffaire();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(affaires);
+	}
+	
+	@GetMapping("/affaire/test")
+	ResponseEntity<List<Affaire>> getAllAffairesTest() {
+		List<Affaire> affaires = affaireService.getAllAffairesJoin();
+		return ResponseEntity.status(HttpStatus.OK).body(affaires);
+		
 	}
 	
 	

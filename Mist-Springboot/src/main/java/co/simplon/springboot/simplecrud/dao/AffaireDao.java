@@ -18,4 +18,6 @@ public interface AffaireDao {
 
 	boolean checkDuplicateAffaire(Affaire affaire);
 
+	List<Affaire> getAllAffairesJoin();
+
 }

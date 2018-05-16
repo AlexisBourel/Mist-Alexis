@@ -15,9 +15,9 @@
             <mat-cell *matCellDef="let element"> {{ element.id}} </mat-cell>
           </ng-container>
         
-      <ng-container matColumnDef="idAgent">
-        <mat-header-cell *matHeaderCellDef> Agent Id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.idAgent}} </mat-cell>
+      <ng-container matColumnDef="agentName">
+        <mat-header-cell *matHeaderCellDef> Responsable </mat-header-cell>
+        <mat-cell *matCellDef="let element" click="agentDetails"> {{ element.agentName}} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="titre">
@@ -27,7 +27,7 @@
 
       <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
+        <mat-cell *matCellDef="let element" click="affaireDetails"> {{ element.description }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="status">

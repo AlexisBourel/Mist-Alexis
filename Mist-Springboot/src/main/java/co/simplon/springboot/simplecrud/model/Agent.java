@@ -28,6 +28,7 @@ public class Agent {
 	@Column
 	private String profil;
 	
+	
 	public Long getId() {
 		return id;
 	}

@@ -17,8 +17,8 @@ import co.simplon.springboot.simplecrud.dao.AffaireDao;
 import co.simplon.springboot.simplecrud.model.Affaire;
 
 @Component
-public class AffaireJdbcDAo implements AffaireDao{
-	
+public class AffaireJdbcDAo implements AffaireDao {
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private DataSource datasource;
 
@@ -74,6 +74,39 @@ public class AffaireJdbcDAo implements AffaireDao{
 		}
 
 		return aLlistOfAffaire;
+	}
+
+	@Override
+	public List<Affaire> getAllAffairesJoin() {
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+		List<Affaire> affaires = new ArrayList<>();
+		String sql = "SELECT * FROM mist.agent INNER JOIN mist.affaire WHERE mist.agent.id = mist.affaire.id_agent";
+
+		try {
+			pstmt = datasource.getConnection().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			log.info("Requete join éxécutée");
+
+			while (rs.next()) {
+				Affaire affaire = new Affaire();
+				affaire = getAffaireFromResultSet(rs);
+				affaire.setAgentName(rs.getString("nom") + " " + rs.getString("prenom"));
+				affaires.add(affaire);
+
+			}
+
+		} catch (SQLException e) {
+			log.error("SQL Error !:", e);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				// Nothing to do
+			}
+		}
+		return affaires;
 	}
 
 	/**
@@ -169,7 +202,8 @@ public class AffaireJdbcDAo implements AffaireDao{
 	/**
 	 * Update an existing affaire.
 	 * 
-	 * @param affaire: the affaire information.
+	 * @param affaire:
+	 *            the affaire information.
 	 */
 	@Override
 	public Affaire saveAffaire(Affaire affaire) {
@@ -180,18 +214,18 @@ public class AffaireJdbcDAo implements AffaireDao{
 		try {
 			// Prepare the SQL query
 			String sql = "UPDATE affaire "
-					   + "SET date_cloture = ?, date_ouverture = ?, description = ?, id_agent = ?, status = ?, titre = ? "
-					   + "WHERE id = ?";
+					+ "SET date_cloture = ?, date_ouverture = ?, description = ?, id_agent = ?, status = ?, titre = ? "
+					+ "WHERE id = ?";
 			pstmt = datasource.getConnection().prepareStatement(sql);
 			pstmt.setDate(++i, affaire.getDateCloture());
-			pstmt.setDate(++i, affaire.getDateOuverture());			
+			pstmt.setDate(++i, affaire.getDateOuverture());
 			pstmt.setString(++i, affaire.getDescription());
 			pstmt.setLong(++i, affaire.getIdAgent());
 			pstmt.setString(++i, affaire.getStatus());
 			pstmt.setString(++i, affaire.getTitre());
-			
-			pstmt.setLong(++i, affaire.getId());			
-			
+
+			pstmt.setLong(++i, affaire.getId());
+
 			// Run the the update query
 			int resultCount = pstmt.executeUpdate();
 			if (resultCount != 1)
@@ -249,10 +283,10 @@ public class AffaireJdbcDAo implements AffaireDao{
 		}
 
 	}
-	
+
 	@Override
 	public boolean checkDuplicateAffaire(Affaire affaire) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs;
 		try {
@@ -283,25 +317,24 @@ public class AffaireJdbcDAo implements AffaireDao{
 	/**
 	 * Build an affaire object with data from the ResultSet
 	 * 
-	 * @param rs : the ResultSet to process.
+	 * @param rs
+	 *            : the ResultSet to process.
 	 * @return Affaire : The new Affaire object
 	 */
 	public Affaire getAffaireFromResultSet(ResultSet rs) throws SQLException {
 		Affaire affaire = new Affaire();
-		//attribution des collones "NOT NULL"
+		// attribution des collones "NOT NULL"
 		affaire.setId(rs.getLong("id"));
 		affaire.setIdAgent(rs.getLong("id_agent"));
 		affaire.setTitre(rs.getString("titre"));
 		affaire.setDateOuverture(rs.getDate("date_ouverture"));
 		affaire.setStatus(rs.getString("status"));
 		affaire.setDescription(rs.getString("description"));
-		//attribution des valeurs qui peuvent êtres nulles
+		// attribution des valeurs qui peuvent êtres nulles
 		if (rs.getDate("date_cloture") != null) {
 			affaire.setDateCloture(rs.getDate("date_cloture"));
 		}
 		return affaire;
 	}
-	
-	
-	
+
 }

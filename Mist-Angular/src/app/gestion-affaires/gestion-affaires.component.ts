@@ -18,7 +18,7 @@ export class GestionAffairesComponent implements OnInit {
 
   affaires: Affaire[];
 
-  displayedColumns = ['id', 'idAgent', 'titre','description', 'dateOuverture', 'status',
+  displayedColumns = ['titre', 'description', 'status', 'agentName', 'dateOuverture',
                   'dateCloture','edit', 'delete'];
   dataSource = new MatTableDataSource();
 

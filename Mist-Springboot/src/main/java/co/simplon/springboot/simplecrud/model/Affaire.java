@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -42,6 +43,8 @@ public class Affaire implements Serializable{
 	@Lob
 	@Column(name="description")
 	private String description;
+	@Transient
+	private String agentName;
 	
 	
 	public long getId() {
@@ -85,6 +88,12 @@ public class Affaire implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getAgentName() {
+		return agentName;
+	}
+	public void setAgentName(String agentName) {
+		this.agentName = agentName;
 	}
 	
 

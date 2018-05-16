@@ -11,5 +11,7 @@ public interface AffaireService {
 	Affaire getAffaire(Long id);
 	Affaire addAffaire(Affaire affaire);
 	Affaire saveAffaire(Affaire affaire);
-	boolean checkDuplicateAffaire(Affaire affaire); 
+	boolean checkDuplicateAffaire(Affaire affaire);
+	void populateDbWithMockedAffaire();
+	List<Affaire> getAllAffairesJoin(); 
 }
