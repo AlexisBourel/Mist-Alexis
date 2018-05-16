@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS affaire (
 *** Insertion d'une affaire de test ***  
 INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)  
 VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");  
+  
 *** Ajout d'une contrainte (intéractions entre tables) ***  
 ALTER TABLE affaire  
   ADD CONSTRAINT fk_id_agent FOREIGN KEY (id_agent) REFERENCES agent (id);  
