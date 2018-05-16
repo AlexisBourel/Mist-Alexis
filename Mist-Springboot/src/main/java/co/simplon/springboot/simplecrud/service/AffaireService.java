@@ -10,5 +10,6 @@ public interface AffaireService {
 	void deleteAffaire(Affaire affaire);
 	Affaire getAffaire(Long id);
 	Affaire addAffaire(Affaire affaire);
-	Affaire saveAffaire(Affaire affaire); 
+	Affaire saveAffaire(Affaire affaire);
+	boolean checkDuplicateAffaire(Affaire affaire); 
 }

@@ -54,4 +54,9 @@ public class AffaireServiceImpl implements AffaireService {
 		return dao.saveAffaire(affaire);
 	}
 
+	@Override
+	public boolean checkDuplicateAffaire(Affaire affaire) {
+		return dao.checkDuplicateAffaire(affaire);
+	}
+
 }

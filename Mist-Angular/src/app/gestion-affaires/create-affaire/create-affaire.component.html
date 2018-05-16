@@ -6,6 +6,7 @@
       <mat-form-field>
         <input matInput placeholder="NOM DE L'AFFAIRE" [(ngModel)]="affaire.titre" name="titre" required>
       </mat-form-field>
+
       <mat-form-field>
         <mat-select placeholder="RESPONSABLE" id="idAgent" [(ngModel)]="affaire.idAgent" name="idAgent" required>
           <mat-option *ngFor="let agent of agents" [value]="agent.value">
@@ -44,10 +45,16 @@
       </div>
       <div class="formClear"></div>
     </div>
+    <div [hidden]="valid">
+      <p>Erreur lors de la validation du formulaire veuillez remplir les champs requis</p>
+    </div>
+    <div [hidden]="!error">
+        <p>Erreur lors de la validation du formulaire, une affaire portant ce nom existe déjà</p>
+      </div>
     <p>* Champs requis</p>
     <div class="buttonGroup">
-      <button type="submit">Create</button>
-      <button routerLink="index/gestion-affaires">Cancel</button>
+      <button type="submit">Créer</button>
+      <button routerLink="index/gestion-affaires">Annuler</button>
     </div>
   </form>
 </div>

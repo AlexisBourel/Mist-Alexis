@@ -47,6 +47,9 @@ public class AffaireController {
 	@CrossOrigin
 	@PostMapping("/affaire")
 	ResponseEntity<?> addAffaire(@Valid @RequestBody Affaire affaire){
+		if (affaireService.checkDuplicateAffaire(affaire)) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Doublon détecté, veuillez changer de nom");
+		}
 		if (affaire.getDateOuverture() == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Veuillez renseigner la date d'ouverture de l'enquête");
 		}

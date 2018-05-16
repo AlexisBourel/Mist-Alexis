@@ -16,4 +16,6 @@ public interface AffaireDao {
 
 	void deleteAffaire(Affaire affaire);
 
+	boolean checkDuplicateAffaire(Affaire affaire);
+
 }

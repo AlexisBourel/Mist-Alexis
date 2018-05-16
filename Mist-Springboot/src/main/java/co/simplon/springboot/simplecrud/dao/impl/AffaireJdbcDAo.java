@@ -249,6 +249,36 @@ public class AffaireJdbcDAo implements AffaireDao{
 		}
 
 	}
+	
+	@Override
+	public boolean checkDuplicateAffaire(Affaire affaire) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+		try {
+			// Prepare the SQL query
+			String sql = "SELECT * FROM affaire WHERE titre = ?";
+			pstmt = datasource.getConnection().prepareStatement(sql);
+			pstmt.setString(1, affaire.getTitre());
+
+			// Run the query
+			rs = pstmt.executeQuery();
+
+			// Handle the query results
+			if (rs.next())
+				return true;
+		} catch (SQLException e) {
+			log.error("SQL Error !:", e);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				// Nothing to do
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Build an affaire object with data from the ResultSet
@@ -271,5 +301,7 @@ public class AffaireJdbcDAo implements AffaireDao{
 		}
 		return affaire;
 	}
+	
+	
 	
 }
