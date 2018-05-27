@@ -55,15 +55,15 @@ INSERT INTO agent (nom, prenom, id_profil) VALUES
 ('SUZANNE', 'Jordan', 1),
 ('NESIC', 'Alexandre', 2);
 # Insertion d'affaires de test
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (1, "Plus dure sera la chute", "23 septembre 2002", "Ouverte", "Résumé1");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (2, "Apparences trompeuses", "30 septembre 2002", "Ouverte", "Résumé2");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (3, "Le Prix de la liberté", "7 octobre 2002", "Ouverte", "Résumé3");
-INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
-VALUES (4, "Les Dessous de Miami", "14 octobre 2002", "Ouverte", "Résumé4");
+#INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+#VALUES (1, "Entrée Test", "23 septembre 2002", "Ouverte", "Test résumé");
+#INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+#VALUES (1, "Plus dure sera la chute", "23 septembre 2002", "Ouverte", "Résumé1");
+#INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+#VALUES (2, "Apparences trompeuses", "30 septembre 2002", "Ouverte", "Résumé2");
+#INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+#VALUES (3, "Le Prix de la liberté", "7 octobre 2002", "Ouverte", "Résumé3");
+#INSERT INTO affaire (id_agent, titre, date_ouverture, status, description)
+#VALUES (4, "Les Dessous de Miami", "14 octobre 2002", "Ouverte", "Résumé4");
 
 

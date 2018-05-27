@@ -1,17 +1,23 @@
-package co.simplon.springboot.simplecrud.service;
+package co.simplon.springboot.simplecrud.dao;
 
 import java.util.List;
 
 import co.simplon.springboot.simplecrud.model.Affaire;
 
-public interface AffaireService {
+public interface AffaireDao {
 
 	List<Affaire> getAllAffaires();
-	void deleteAffaire(Affaire affaire);
+
 	Affaire getAffaire(Long id);
+
 	Affaire addAffaire(Affaire affaire);
+
 	Affaire saveAffaire(Affaire affaire);
+
+	void deleteAffaire(Affaire affaire);
+
 	boolean checkDuplicateAffaire(Affaire affaire);
-	void populateDbWithMockedAffaire();
-	List<Affaire> getAllAffairesJoin(); 
+
+	List<Affaire> getAllAffairesJoin();
+
 }

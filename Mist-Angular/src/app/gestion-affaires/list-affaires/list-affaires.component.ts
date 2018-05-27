@@ -1,24 +1,21 @@
-import { Component, OnInit,  ViewChild, AfterViewInit  } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
-import {DataSource} from '@angular/cdk/collections';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Affaire } from '../affaire';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Affaire } from './affaire';
-import { AffaireService } from './affaire.service';
+import { AffaireService } from '../affaire.service';
 
 @Component({
-  selector: 'app-gestion-affaires',
-  templateUrl: './gestion-affaires.component.html',
-  styleUrls: ['./gestion-affaires.component.css']
+  selector: 'app-list-affaires',
+  templateUrl: './list-affaires.component.html',
+  styleUrls: ['./list-affaires.component.css']
 })
-export class GestionAffairesComponent implements OnInit {
+export class ListAffairesComponent  implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   affaires: Affaire[];
 
-  displayedColumns = ['titre', 'description', 'status', 'agentName', 'dateOuverture',
+  displayedColumns = ['id', 'idAgent', 'titre', 'dateOuverture', 'status', 'description',
                   'dateCloture','edit', 'delete'];
   dataSource = new MatTableDataSource();
 
@@ -43,10 +40,7 @@ export class GestionAffairesComponent implements OnInit {
   loadAffaire(){
     this.affaireService.getAllAffaire().subscribe(
       data => { this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      console.log(data);
-      console.log("affaires loaded");
-     }
+      this.dataSource.paginator = this.paginator; }
     );
   }
 
